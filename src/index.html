@@ -1,0 +1,25 @@
+<div>
+  <div class="cut_imgbox" ref="cut_imgbox" @touchend="carboxup($event)" @mouseup="carboxup($event)">
+      <div class="cut_left">
+          <div class="cut_box" ref="cut_box">
+              <img id="caijianimg" :src="imgurl" alt ref="caijianimg">
+              <div class="cut_catbox" ref="cut_carbox" @touchstart="carboxdown($event)" @touchend="carboxup($event)" @touchmove="carboxmove($event)" @mousedown="carboxdown($event)" @mouseup="carboxup($event)" @mousemove="carboxmove($event)">
+                  <div class="cut_model cut_model1"></div>
+                  <div class="cut_model cut_model2"></div>
+                  <div class="cut_model cut_model3"></div>
+                  <div class="cut_model cut_model4"></div>
+
+                  <div class="cut_point cut_point1"></div>
+                  <div class="cut_point cut_point3"></div>
+                  <div class="cut_point cut_point5"></div>
+                  <div class="cut_point cut_point7"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div ref="yulanimg" style="display:none"></div>
+
+  <div  class="cut_btn_box">
+      <button type="primary" @click="caijianimg">裁剪头像</button>
+  </div>
+</div>
