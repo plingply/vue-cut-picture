@@ -305,7 +305,7 @@ let vueCutPicture = {
         },
 
         // 裁剪
-        caijianimg() {
+        confirmfun() {
             if (this.imgurl == "") {
                 this._alert({
                     type: "warning",

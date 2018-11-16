@@ -20,7 +20,7 @@
   <div ref="yulanimg" style="display:none"></div>
 
   <div  class="cut_btn_box">
-      <button @click="cancelfun" v-show="cancelShow">{{ confirmText }}</button>
-      <button @click="caijianimg" v-show="confirmShow">{{ cancelText }}</button>
+      <button @click="cancelfun" class="cancelstyle" v-show="cancelShow">{{ confirmText }}</button>
+      <button @click="confirmfun" class="confirmstyle" v-show="confirmShow">{{ cancelText }}</button>
   </div>
 </div>
