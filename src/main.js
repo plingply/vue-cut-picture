@@ -21,6 +21,22 @@ let vueCutPicture = {
         },
         url: {
             required: true
+        },
+        cancelShow:{
+            type: Boolean,
+            default:true
+        },
+        cancelText:{
+            type: String,
+            default:'确认裁剪'
+        },
+        confirmShow:{
+            type: Boolean,
+            default:true
+        },
+        confirmText:{
+            type: String,
+            default:'取消'
         }
     },
     data() {
@@ -305,6 +321,11 @@ let vueCutPicture = {
             this.catImg(width, height, x, y);
         },
 
+        // 取消按钮
+        cancelfun(){
+            this.$emit("cancelfun")
+        },
+
         upload() {
             var img = document.getElementById("caijianimg");
             var canvas = document.getElementById("cut_canvas");
@@ -339,7 +360,7 @@ let vueCutPicture = {
 
             this.$emit("uploadfile", {
                 file: convertBase64UrlToBlob(imgdata),
-                src: imgdata
+                base64: imgdata
             });
         }
     },

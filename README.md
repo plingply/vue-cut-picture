@@ -43,12 +43,32 @@ Vue.use(vueCutPicture)
     },
     url: {
       required: true
+    },
+    cancelShow:{
+        type: Boolean,
+        default:true
+    },
+    cancelText:{
+        type: String,
+        default:'确认裁剪'
+    },
+    confirmShow:{
+        type: Boolean,
+        default:true
+    },
+    confirmText:{
+        type: String,
+        default:'取消'
     }
   }
  ```
 
 ### methods
  ```javascript
-	 @uploadfile
+    // 确认回调
+   @uploadfile
+   // 取消回调
+   @cancelfun
+   
 	 裁剪后的回调，包含文件和图片地址
  ```

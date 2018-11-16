@@ -20,6 +20,7 @@
   <div ref="yulanimg" style="display:none"></div>
 
   <div  class="cut_btn_box">
-      <button type="primary" @click="caijianimg">裁剪头像</button>
+      <button @click="cancelfun" v-show="cancelShow">{{ confirmText }}</button>
+      <button @click="caijianimg" v-show="confirmShow">{{ cancelText }}</button>
   </div>
 </div>
