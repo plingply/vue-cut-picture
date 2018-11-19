@@ -22,21 +22,21 @@ let vueCutPicture = {
         url: {
             required: true
         },
-        cancelShow:{
+        cancelShow: {
             type: Boolean,
-            default:true
+            default: true
         },
-        cancelText:{
+        cancelText: {
             type: String,
-            default:'确认裁剪'
+            default: '确认裁剪'
         },
-        confirmShow:{
+        confirmShow: {
             type: Boolean,
-            default:true
+            default: true
         },
-        confirmText:{
+        confirmText: {
             type: String,
-            default:'取消'
+            default: '取消'
         }
     },
     data() {
@@ -187,7 +187,7 @@ let vueCutPicture = {
                 var width = carbox.clientWidth;
                 var left = parseFloat(carbox.style.left);
                 var top = parseFloat(carbox.style.top);
-                var cwx = this.oldx - x
+                var cwx = parseInt(this.oldx - x) === 0 ? 1 : parseInt(this.oldx - x);
 
                 // 左上
                 if (this.point_className.indexOf("cut_point1") != -1) {
@@ -216,7 +216,7 @@ let vueCutPicture = {
                     }
                     carbox.style.width = xwidth + "px";
                     carbox.style.height = xwidth / this.shx + "px";
-                    carbox.style.top = top - cwx / this.shx + "px";
+                    carbox.style.top = top + cwx / this.shx + "px";
                     this.oldx = x;
                 }
                 // 右下
@@ -283,7 +283,7 @@ let vueCutPicture = {
         },
 
         // 取消按钮
-        cancelfun(){
+        cancelfun() {
             this.$emit("cancelfun")
         },
 
