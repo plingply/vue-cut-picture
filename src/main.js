@@ -78,40 +78,6 @@ let vueCutPicture = {
             box.style.width = this.width;
             box.style.height = this.height;
         },
-        // 个人头像保存
-        savephoto(id) {
-            this.$http
-                .post("/api/users/setPortrait", {
-                    data: {
-                        portrait: id
-                    }
-                })
-                .then(data => {
-                    if (data.msg == "success") {
-                        this._alert({
-                            type: "success",
-                            msg: "保存成功"
-                        });
-                    }
-                });
-        },
-        // 翻译头像保存
-        savephoto1(id) {
-            this.$http
-                .post("/api/translator/setPortrait", {
-                    data: {
-                        pictureUrl: id
-                    }
-                })
-                .then(data => {
-                    if (data.msg == "success") {
-                        this._alert({
-                            type: "success",
-                            msg: "保存成功"
-                        });
-                    }
-                });
-        },
         //设置剪裁框的位置 以及遮罩层大小定位
         setCatboxposition() {
             var box = this.$refs.cut_box;
@@ -307,10 +273,7 @@ let vueCutPicture = {
         // 裁剪
         confirmfun() {
             if (this.imgurl == "") {
-                this._alert({
-                    type: "warning",
-                    msg: "请选择图片"
-                });
+                alert('请选择图片')
                 return;
             }
             var carbox = this.$refs.cut_carbox;
@@ -331,10 +294,7 @@ let vueCutPicture = {
             var canvas = document.getElementById("cut_canvas");
 
             if (!canvas) {
-                this._alert({
-                    type: "warning",
-                    msg: "请先裁剪图片"
-                });
+                alert("请先裁剪图片")
                 return;
             }
 
