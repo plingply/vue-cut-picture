@@ -184,16 +184,14 @@ let vueCutPicture = {
             if (this.isclick1) {
                 var x = e.clientX ? e.clientX : e.touches[0].clientX;
                 var y = e.clientY ? e.clientY : e.touches[0].clientY;
-                var w = x - this.oldx;
-                var h = y - this.oldy;
                 var width = carbox.clientWidth;
-                var height = carbox.clientHeight;
                 var left = parseFloat(carbox.style.left);
                 var top = parseFloat(carbox.style.top);
+                var cwx = this.oldx - x
 
                 // 左上
                 if (this.point_className.indexOf("cut_point1") != -1) {
-                    let xwidth = width + (this.oldx - x);
+                    let xwidth = width + cwx;
                     if (
                         ((xwidth > bw || xwidth / this.shx > bh) && xwidth > width) ||
                         (xwidth < 50 && xwidth < width)
@@ -202,14 +200,14 @@ let vueCutPicture = {
                     }
                     carbox.style.width = xwidth + "px";
                     carbox.style.height = xwidth / this.shx + "px";
-                    carbox.style.left = left - (this.oldx - x) + "px";
-                    carbox.style.top = top - (this.oldx - x) / this.shx + "px";
+                    carbox.style.left = left - cwx + "px";
+                    carbox.style.top = top - cwx / this.shx + "px";
                     this.oldx = x;
                     this.oldy = y;
                 }
                 // 右上
                 if (this.point_className.indexOf("cut_point3") != -1) {
-                    let xwidth = width - (this.oldx - x);
+                    let xwidth = width - cwx;
                     if (
                         ((xwidth > bw || xwidth / this.shx > bh) && xwidth > width) ||
                         (xwidth < 50 && xwidth < width)
@@ -218,26 +216,26 @@ let vueCutPicture = {
                     }
                     carbox.style.width = xwidth + "px";
                     carbox.style.height = xwidth / this.shx + "px";
-                    carbox.style.top = top + (this.oldx - x) / this.shx + "px";
+                    carbox.style.top = top - cwx / this.shx + "px";
                     this.oldx = x;
                 }
                 // 右下
                 if (this.point_className.indexOf("cut_point5") != -1) {
-                    let xwidth = width - (this.oldx - x);
+                    let xwidth = width - cwx;
                     if (
                         ((xwidth > bw || xwidth / this.shx > bh) && xwidth > width) ||
                         (xwidth < 50 && xwidth < width)
                     ) {
                         return;
                     }
-                    carbox.style.width = width - (this.oldx - x) + "px";
+                    carbox.style.width = width - cwx + "px";
                     carbox.style.height = xwidth / this.shx + "px";
                     this.oldx = x;
                 }
 
                 // 左下
                 if (this.point_className.indexOf("cut_point7") != -1) {
-                    let xwidth = width + (this.oldx - x);
+                    let xwidth = width + cwx;
                     if (
                         ((xwidth > bw || xwidth / this.shx > bh) && xwidth > width) ||
                         (xwidth < 50 && xwidth < width)
@@ -246,7 +244,7 @@ let vueCutPicture = {
                     }
                     carbox.style.width = xwidth + "px";
                     carbox.style.height = xwidth / this.shx + "px";
-                    carbox.style.left = left - (this.oldx - x) + "px";
+                    carbox.style.left = left - cwx + "px";
                     this.oldx = x;
                 }
             }
