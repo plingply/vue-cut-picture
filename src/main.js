@@ -187,7 +187,11 @@ let vueCutPicture = {
                 var width = carbox.clientWidth;
                 var left = parseFloat(carbox.style.left);
                 var top = parseFloat(carbox.style.top);
-                var cwx = parseInt(this.oldx - x) === 0 ? 1 : parseInt(this.oldx - x);
+                var cwx = this.oldx - x;
+
+                if(Math.abs(cwx) < 1){
+                    return
+                }
 
                 // 左上
                 if (this.point_className.indexOf("cut_point1") != -1) {
