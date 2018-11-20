@@ -36,7 +36,7 @@ let vueCutPicture = {
         },
         compress: {
             type: Boolean,
-            default: true
+            default: false
         },
         confirmText: {
             type: String,
