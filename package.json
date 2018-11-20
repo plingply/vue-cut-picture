@@ -1,6 +1,6 @@
 {
     "name": "vue-cut-picture",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "description": "vue ui vue-cut-picture",
     "main": "dist/index.js",
     "scripts": {

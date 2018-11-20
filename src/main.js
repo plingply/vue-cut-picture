@@ -155,12 +155,15 @@ let vueCutPicture = {
             var bw = box.clientWidth;
             var ch = carbox.clientHeight;
             var cw = carbox.clientWidth;
+            var x = e.clientX ? e.clientX : e.touches[0].clientX;
+            var y = e.clientY ? e.clientY : e.touches[0].clientY;
+            var cwx = this.oldx - x;
+            if (Math.abs(cwx) < 4) {
+                return
+            }
             if (this.isClick) {
-                var x = e.clientX ? e.clientX : e.touches[0].clientX;
-                var y = e.clientY ? e.clientY : e.touches[0].clientY;
                 var left = x - this.oldx;
                 var top = y - this.oldy;
-
                 var oldleft = parseFloat(carbox.style.left);
                 var oldtop = parseFloat(carbox.style.top);
 
@@ -182,16 +185,9 @@ let vueCutPicture = {
             }
             //裁剪框改变大小
             if (this.isclick1) {
-                var x = e.clientX ? e.clientX : e.touches[0].clientX;
-                var y = e.clientY ? e.clientY : e.touches[0].clientY;
                 var width = carbox.clientWidth;
                 var left = parseFloat(carbox.style.left);
                 var top = parseFloat(carbox.style.top);
-                var cwx = this.oldx - x;
-
-                if(Math.abs(cwx) < 1){
-                    return
-                }
 
                 // 左上
                 if (this.point_className.indexOf("cut_point1") != -1) {
