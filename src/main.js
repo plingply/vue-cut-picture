@@ -138,7 +138,7 @@ let vueCutPicture = {
                 ctx.drawImage(img, 0, 0, width, height);
             }
             //进行最小压缩
-            let ndata = canvas.toDataURL('image/jpeg', 0.1);
+            let ndata = canvas.toDataURL('image/jpeg', 0.3);
             tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
             return ndata;
         },
