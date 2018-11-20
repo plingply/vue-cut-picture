@@ -44,8 +44,12 @@ export default {
             let str = '<div><img id="clip_image" src="originUrl"></div><button type="button" id="cancel_clip">取消</button><button type="button" id="clip_button">确定</button>';
             str += '<div class="crop_loading"><div class="crop_content"><img src="../static/loading.gif"><div class="crop_text">图片上传中</div></div></div>';
             str += '<div class="crop_success"><div class="crop_success_text">上传成功</div></div></div>';
-
-            let body = document.getElementsByTagName('body')[0];
+            let body = null
+            if (this.options.element) {
+                body = this.options.element
+            } else {
+                body = document.getElementsByTagName('body')[0];
+            }
             this.reagion = document.createElement('div');
             this.reagion.id = 'clip_container';
             this.reagion.className = 'container';
