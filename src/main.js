@@ -286,6 +286,8 @@ let vueCutPicture = {
         // 取消按钮
         cancelfun() {
             this.$emit("cancelfun")
+            this.$refs.yulanimg.innerHTML = "";
+            this.imgurl = ""
         },
 
         upload() {
@@ -304,23 +306,13 @@ let vueCutPicture = {
             var type = str.substr(1); //你想要什么图片格式 就选什么吧
             var imgdata = canvas.toDataURL(type);
 
-            function convertBase64UrlToBlob(urlData) {
-                var bytes = window.atob(urlData.split(",")[1]); //去掉url的头，并转换为byte
-
-                //处理异常,将ascii码小于0的转换为大于0
-                var ab = new ArrayBuffer(bytes.length);
-                var ia = new Uint8Array(ab);
-                for (var i = 0; i < bytes.length; i++) {
-                    ia[i] = bytes.charCodeAt(i);
-                }
-
-                return new Blob([ab], { type: "image/png" });
-            }
-
             this.$emit("uploadfile", {
-                file: convertBase64UrlToBlob(imgdata),
                 base64: imgdata
             });
+
+            imgdata = null
+            this.$refs.yulanimg.innerHTML = "";
+            this.imgurl = ""
         }
     },
     mounted() {
