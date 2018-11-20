@@ -16,10 +16,9 @@
 		<div>
 			<h1>裁剪头像</h1>
 			<div>
+				<img :src="src" alt="" style="max-width:100%" id="img">
 				<input type="file" @change="changes">
 			</div>
-			<vue-cut-picture :url="url" v-show="cutimgshow" :height="height" :width="width" :cutwidth="cutwidth" @uploadfile="uploadfile"></vue-cut-picture>
-			<img :src="src" alt="" style="max-width:100%">
 		</div>
 	</div>
 	<script>
@@ -27,12 +26,6 @@
 		new Vue({
 			el: '#app',
 			data: {
-				url: "",
-				cutwidth: "190px",
-				cutheight: "100px",
-				width: "100%",
-				height: "500px",
-				cutimgshow: false,
 				src: ""
 			},
 			methods: {
@@ -41,8 +34,11 @@
 					this.src = imgobj.src;
 				},
 				changes(e) {
-					this.url = e.target.files[0];
-					this.cutimgshow = true;
+					let image = document.getElementById('img'); //预览对象
+					this.clip(event, {
+						resultObj: image,
+						aspectRatio: 760 / 400
+					})
 				}
 			}
 		})

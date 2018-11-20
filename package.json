@@ -1,6 +1,6 @@
 {
     "name": "vue-cut-picture",
-    "version": "1.2.3",
+    "version": "1.2.5",
     "description": "vue ui vue-cut-picture",
     "main": "dist/index.js",
     "scripts": {
@@ -38,5 +38,8 @@
         "rollup-plugin-replace": "^2.0.0",
         "rollup-plugin-uglify": "^3.0.0",
         "rollup-watch": "^4.3.1"
+    },
+    "dependencies": {
+        "cropperjs": "^1.4.3"
     }
 }
