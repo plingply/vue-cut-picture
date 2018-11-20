@@ -158,7 +158,8 @@ let vueCutPicture = {
             var x = e.clientX ? e.clientX : e.touches[0].clientX;
             var y = e.clientY ? e.clientY : e.touches[0].clientY;
             var cwx = this.oldx - x;
-            if (Math.abs(cwx) < 4) {
+            var cwy = this.oldy - y;
+            if (Math.abs(cwx) < 4 && Math.abs(cwy) < 4) {
                 return
             }
             if (this.isClick) {
