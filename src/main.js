@@ -55,7 +55,8 @@ let vueCutPicture = {
             // 裁剪框 宽高比例
             shx: 1,
 
-            loading: false
+            loading: false,
+            isload: false
         };
     },
     watch: {
@@ -196,6 +197,7 @@ let vueCutPicture = {
             carbox.style.opacity = 1;
 
             this.loading = false
+            this.isload = true
         },
 
         // 剪裁框移动
@@ -231,7 +233,7 @@ let vueCutPicture = {
             var y = e.clientY ? e.clientY : e.touches[0].clientY;
             var cwx = this.oldx - x;
             var cwy = this.oldy - y;
-            if (Math.abs(cwx) < 4 && Math.abs(cwy) < 4) {
+            if (Math.abs(cwx) < 1 && Math.abs(cwy) < 1) {
                 return
             }
             if (this.isClick) {
@@ -343,6 +345,7 @@ let vueCutPicture = {
 
         // 裁剪
         confirmfun() {
+            if(!this.isload)return
             if (this.imgurl == "") {
                 alert('请选择图片')
                 return;
@@ -357,6 +360,7 @@ let vueCutPicture = {
 
         // 取消按钮
         cancelfun() {
+            if(!this.isload)return
             this.$emit("cancelfun")
             this.$refs.yulanimg.innerHTML = "";
             this.imgurl = ""
