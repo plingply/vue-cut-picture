@@ -18,7 +18,7 @@
       </div>
   </div>
   <div ref="yulanimg" style="display:none"></div>
-
+  <div class="cut_loading" v-show="loading">图片加载中...</div>
   <div  class="cut_btn_box">
       <button @click="cancelfun" class="cancelstyle" v-show="cancelShow">{{ confirmText }}</button>
       <button @click="confirmfun" class="confirmstyle" v-show="confirmShow">{{ cancelText }}</button>

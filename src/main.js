@@ -54,32 +54,43 @@ let vueCutPicture = {
             imgurl: "",
             // 裁剪框 宽高比例
             shx: 1,
+
+            loading: false
         };
     },
     watch: {
         url(file) {
+            this.loading = true
             var self = this;
             var carbox = this.$refs.cut_carbox;
             var width = carbox.clientWidth;
             var fr = new FileReader();
             fr.readAsDataURL(file);
             fr.onload = function () {
-                if(self.compress){
+                if (self.compress) {
                     let img = new Image()
                     img.src = this.result
-                    img.onload = function(){
+                    img.onload = function () {
                         self.imgurl = self.compressImg(img)
-                    }
-                }else{
-                    self.imgurl = this.result;
-                }
-                self.$refs.caijianimg.style.maxWidth = self.width;
-                self.$refs.caijianimg.style.minWidth = width + "px";
-                self.$refs.caijianimg.style.maxHeight = self.height;
+                        self.$refs.caijianimg.style.maxWidth = self.width;
+                        self.$refs.caijianimg.style.minWidth = width + "px";
+                        self.$refs.caijianimg.style.maxHeight = self.height;
 
-                setTimeout(() => {
-                    self.setCatboxposition();
-                });
+                        setTimeout(() => {
+                            self.setCatboxposition();
+                        });
+                    }
+                } else {
+                    self.imgurl = this.result;
+                    self.$refs.caijianimg.style.maxWidth = self.width;
+                    self.$refs.caijianimg.style.minWidth = width + "px";
+                    self.$refs.caijianimg.style.maxHeight = self.height;
+
+                    setTimeout(() => {
+                        self.setCatboxposition();
+                    });
+                }
+
             };
         }
     },
@@ -91,12 +102,8 @@ let vueCutPicture = {
             //瓦片canvas
             let tCanvas = document.createElement("canvas");
             let tctx = tCanvas.getContext("2d");
-            console.log(img)
-            let initSize = img.src.length;
             let width = img.width;
             let height = img.height;
-
-            console.log(width,height)
 
             //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
             let ratio;
@@ -187,6 +194,8 @@ let vueCutPicture = {
             });
 
             carbox.style.opacity = 1;
+
+            this.loading = false
         },
 
         // 剪裁框移动
