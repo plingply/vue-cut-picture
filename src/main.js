@@ -163,7 +163,7 @@ export default {
             self.postImg(data);
           }
         }
-      }, 0)
+      }, 20)
     }
     //获取裁剪图片资源
     Vue.prototype.getRoundedCanvas = function (sourceCanvas) {
