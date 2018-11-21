@@ -90,7 +90,7 @@ export default {
 
       this.fileObj = e.srcElement;
 
-      typeof this.options.loadImgfun === "function" ? this.options.loadImgfun() : ''
+      typeof opt.loadImgfun === "function" ? opt.loadImgfun() : ''
 
       let files = e.target.files || e.dataTransfer.files;
 
