@@ -87,9 +87,10 @@ export default {
 
     //外部接口，用于input['file']对象change时的调用
     Vue.prototype.clip = function (e, opt) {
-      let self = this;
 
       this.fileObj = e.srcElement;
+
+      typeof this.options.loadImgfun === "function" ? this.options.loadImgfun() : ''
 
       let files = e.target.files || e.dataTransfer.files;
 
@@ -109,26 +110,36 @@ export default {
 
 
       //调用方法转成url格式
-      this.originUrl = this.getObjectURL(this.picValue);
-
-      //每次替换图片要重新得到新的url
-      if (this.cropper) {
-        this.cropper.replace(this.originUrl);
-      }
+      //调用方法转成url格式
+      this.getObjectURL(this.picValue);
 
     }
     //图片转码方法
     Vue.prototype.getObjectURL = function (file) {
-      let url = null;
-      file = this.compress(file)
-      if (window.createObjectURL != undefined) { // basic
-        url = window.createObjectURL(file);
-      } else if (window.URL != undefined) { // mozilla(firefox)
-        url = window.URL.createObjectURL(file);
-      } else if (window.webkitURL != undefined) { // webkit or chrome
-        url = window.webkitURL.createObjectURL(file);
-      }
-      return url;
+      let self = this
+      let fr = new FileReader();
+      fr.readAsDataURL(file);
+      fr.onload = function () {
+        if (self.options.compress) {
+          let img = new Image()
+          img.src = this.result
+          img.onload = function () {
+            self.originUrl = self.compress(img)
+            //每次替换图片要重新得到新的url
+            if (self.cropper) {
+              self.cropper.replace(self.originUrl);
+            }
+            typeof self.options.loadImgComplete === "function" ? self.options.loadImgComplete() : ''
+          }
+        } else {
+          self.originUrl = this.result;
+          //每次替换图片要重新得到新的url
+          if (self.cropper) {
+            self.cropper.replace(self.originUrl);
+          }
+          typeof self.options.loadImgComplete === "function" ? self.options.loadImgComplete() : ''
+        }
+      };
     }
     //点击确定进行裁剪
     Vue.prototype.crop = function () {
