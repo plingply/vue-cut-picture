@@ -162,19 +162,8 @@ export default {
         let imgData = roundedCanvas.toDataURL();
         image.src = imgData;
 
-        //判断图片是否大于100k,不大于直接上传，反之压缩
-        if (imgData.length < (200 * 1024)) {
-          //图片上传
-          self.postImg(imgData);
-
-        } else {
-          image.onload = function () {
-            //压缩处理
-            let data = self.compress(image, self.Orientation);
-            //图片上传
-            self.postImg(data);
-          }
-        }
+        self.postImg(imgData);
+        
       }, 20)
     }
     //获取裁剪图片资源
