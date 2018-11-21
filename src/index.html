@@ -1,0 +1,7 @@
+<div class="cut_img_box" v-show="show">
+    <img :src="originUrl" alt="" ref="image">
+    <div class="cut_btnbox">
+        <button @click="cancelClip" class="cancelbtn">{{ canceltext }}</button>
+        <button @click="clip">{{ confirmtext }}</button>
+    </div>
+</div>
