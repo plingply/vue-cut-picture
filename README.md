@@ -19,7 +19,7 @@ options cropperjs配置
 upload //裁剪完成后回调 base64 可自行上传至服务器
 saveloadingstart // 保存图片，可自行加loading
 loadimgstart // 加载图片开始，可自行加loading
-loadimgstart // 加载图片结束，可自行加loading
+loadimgend // 加载图片结束，可自行加loading
 cancelfun // 取消按钮回调
 
 changes(e){
