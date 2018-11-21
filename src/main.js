@@ -120,6 +120,7 @@ export default {
     //图片转码方法
     Vue.prototype.getObjectURL = function (file) {
       let url = null;
+      file = this.compress(file)
       if (window.createObjectURL != undefined) { // basic
         url = window.createObjectURL(file);
       } else if (window.URL != undefined) { // mozilla(firefox)
